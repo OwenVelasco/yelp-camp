@@ -23,8 +23,9 @@ var commentRoutes = require("./routes/comments"),
 	campgroundRoutes = require("./routes/campgrounds")
 	indexRoutes		= require("./routes/index")
 
-mongoose.connect("mongodb://localhost/yelp_camp");
-app.use(bodyParser.urlencoded({extened:true}));
+mongoose.set('useCreateIndex', true)
+mongoose.connect("mongodb://localhost/yelp_camp",{ useNewUrlParser: true, useUnifiedTopology: true  });
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
@@ -56,10 +57,10 @@ app.use(function(req,res,next){
 //Requiring routes
 app.use(indexRoutes)
 app.use("/campgrounds/:id/comments", commentRoutes)
-app.use("/campgrounds", campgroundRoutes)
+
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
+
 app.use("/campgrounds/:id/reviews", reviewRoutes);
 
 

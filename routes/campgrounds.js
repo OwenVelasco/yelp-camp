@@ -4,7 +4,7 @@ var router = express.Router();
 var Campground = require("../models/campground");
 var middleware = require("../middleware");
 var NodeGeocoder = require('node-geocoder');
-var Review = require("../models/review")
+var Review = require("../models/review");
  
 var options = {
   provider: 'google',
